@@ -74,6 +74,7 @@ function displayGroups(groups) {
             <div class="group-score">
                 <input type="number" id="points-${index}" class="points-input" min="0" value="0">
                 <button onclick="addPoints(${index})">Adicionar Pontos</button>
+                <button onclick="removePoints(${index})" style="background-color: #e74c3c; color: white;">Remover Pontos</button>
             </div>
         `;
         groupsDiv.appendChild(groupDiv);
@@ -91,6 +92,31 @@ function addPoints(groupIndex) {
 
     // Atualiza a pontuação acumulada do grupo
     groupScores[groupIndex] += points;
+
+    // Atualiza a exibição da pontuação
+    const scoreSpan = document.getElementById(`score-${groupIndex}`);
+    scoreSpan.textContent = groupScores[groupIndex];
+
+    // Limpa o campo de input de pontos
+    pointsInput.value = "0";
+}
+
+// Remove pontos do grupo e atualiza a exibição
+function removePoints(groupIndex) {
+    const pointsInput = document.getElementById(`points-${groupIndex}`);
+    const points = parseInt(pointsInput.value);
+    if (isNaN(points) || points < 0) {
+        alert("Por favor, insira um valor de pontos válido.");
+        return;
+    }
+
+    // Atualiza a pontuação acumulada do grupo
+    groupScores[groupIndex] -= points;
+
+    // Garantir que a pontuação não seja negativa
+    if (groupScores[groupIndex] < 0) {
+        groupScores[groupIndex] = 0;
+    }
 
     // Atualiza a exibição da pontuação
     const scoreSpan = document.getElementById(`score-${groupIndex}`);
