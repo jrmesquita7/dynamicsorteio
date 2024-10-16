@@ -125,3 +125,20 @@ function removePoints(groupIndex) {
     // Limpa o campo de input de pontos
     pointsInput.value = "0";
 }
+
+// Avalia o grupo vencedor com a maior pontuação
+function evaluateWinner() {
+    let maxScore = Math.max(...groupScores);
+    let winningGroups = groupScores
+        .map((score, index) => ({ score, index }))
+        .filter(group => group.score === maxScore);
+
+    const winnerDiv = document.getElementById('winner');
+    
+    if (winningGroups.length > 1) {
+        winnerDiv.textContent = `Há um empate entre os grupos: ${winningGroups.map(g => g.index + 1).join(', ')} com ${maxScore} pontos!`;
+    } else {
+        const winnerIndex = winningGroups[0].index;
+        winnerDiv.textContent = `O grupo ${winnerIndex + 1} é o vencedor com ${maxScore} pontos!`;
+    }
+}

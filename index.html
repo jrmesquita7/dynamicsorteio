@@ -48,6 +48,12 @@
         .points-input {
             width: 50px;
         }
+        .winner {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
         @media (max-width: 800px) {
             .group {
                 flex: 1 1 calc(50% - 20px); /* Em telas menores, cada grupo ocupa 50% */
@@ -70,6 +76,12 @@
     <button onclick="processFile()">Sortear e Separar</button>
 
     <div class="groups" id="groups"></div>
+
+    <!-- Botão para avaliar o grupo vencedor -->
+    <button id="evaluateWinner" onclick="evaluateWinner()" style="margin-top: 20px; background-color: #2980b9;">Avaliar Vencedor</button>
+
+    <!-- Espaço para mostrar o vencedor -->
+    <div id="winner" class="winner"></div>
 </div>
 
 </body>
