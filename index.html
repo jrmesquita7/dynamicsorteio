@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio e Sistema de Pontuação</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="script.js" defer></script> <!-- Arquivo JS externo -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1000px; /* aumentei para 1000px para permitir mais espaço */
+            margin: 0 auto;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .groups {
+            display: flex;
+            flex-wrap: wrap; /* Flexbox para permitir múltiplas linhas */
+            gap: 20px; /* Espaço entre os grupos */
+            margin-top: 20px;
+        }
+        .group {
+            flex: 1 1 calc(33.333% - 20px); /* Cada grupo ocupa 1/3 da linha */
+            min-width: 300px; /* Tamanho mínimo de um grupo */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .group-score {
+            margin-top: 10px;
+        }
+        .points-input {
+            width: 50px;
+        }
+        @media (max-width: 800px) {
+            .group {
+                flex: 1 1 calc(50% - 20px); /* Em telas menores, cada grupo ocupa 50% */
+            }
+        }
+        @media (max-width: 500px) {
+            .group {
+                flex: 1 1 100%; /* Em telas muito pequenas, cada grupo ocupa 100% */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sorteio e Sistema de Pontuação de Grupos</h1>
+    <input type="file" id="upload" accept=".xlsx, .xls">
+    <label for="numGroups">Número de Grupos:</label>
+    <input type="number" id="numGroups" min="1" value="2">
+    <button onclick="processFile()">Sortear e Separar</button>
+
+    <div class="groups" id="groups"></div>
+</div>
+
+</body>
+</html>
