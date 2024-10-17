@@ -126,7 +126,7 @@ function removePoints(groupIndex) {
     pointsInput.value = "0";
 }
 
-// Avalia o grupo vencedor com a maior pontuação
+// Avalia o grupo vencedor com a maior pontuação e exibe o ranking
 function evaluateWinner() {
     let maxScore = Math.max(...groupScores);
     let winningGroups = groupScores
@@ -141,4 +141,22 @@ function evaluateWinner() {
         const winnerIndex = winningGroups[0].index;
         winnerDiv.textContent = `O grupo ${winnerIndex + 1} é o vencedor com ${maxScore} pontos!`;
     }
+
+    // Exibe o ranking
+    displayRanking();
+}
+
+// Exibe o ranking dos grupos com base nas pontuações
+function displayRanking() {
+    const ranking = groupScores
+        .map((score, index) => ({ score, index }))
+        .sort((a, b) => b.score - a.score); // Ordena do maior para o menor
+
+    let rankingMessage = "Ranking dos Grupos:<br>";
+    ranking.forEach((group, position) => {
+        rankingMessage += `${position + 1}º lugar: Grupo ${group.index + 1} com ${group.score} pontos<br>`;
+    });
+
+    const winnerDiv = document.getElementById('winner');
+    winnerDiv.innerHTML += `<br><br>${rankingMessage}`;
 }

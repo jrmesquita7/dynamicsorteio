@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio e Sistema de Pontuação</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script> <!-- Biblioteca XLSX para ler arquivos Excel -->
+    <link rel="stylesheet" href="style.css"> <!-- Arquivo CSS externo -->
+    <script src="script.js" defer></script> <!-- Arquivo JS externo -->
+</head>
+<body>
+
+<div class="container">
+    <h1>Sorteio e Sistema de Pontuação de Grupos</h1>
+    <input type="file" id="upload" accept=".xlsx, .xls">
+    <label for="numGroups">Número de Grupos:</label>
+    <input type="number" id="numGroups" min="1" value="2">
+    <button onclick="processFile()">Sortear e Separar</button>
+
+    <div class="groups" id="groups"></div>
+
+    <!-- Botão para avaliar o grupo vencedor -->
+    <button id="evaluateWinner" onclick="evaluateWinner()" style="margin-top: 20px; background-color: #2980b9;">Avaliar Vencedor</button>
+
+    <!-- Espaço para mostrar o vencedor -->
+    <div id="winner" class="winner"></div>
+</div>
+
+</body>
+</html>
